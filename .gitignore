@@ -1,0 +1,17 @@
+.tmp/
+build/
+output/
+
+# Vim swap/backup files
+.*.swp
+.*.swo
+.*.swn
+.*.swm
+*~
+
+# Python cache/temp files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
