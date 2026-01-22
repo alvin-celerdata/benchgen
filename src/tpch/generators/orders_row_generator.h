@@ -65,6 +65,7 @@ class OrdersRowGenerator {
 
   arrow::Status Init();
   void SkipRows(int64_t rows);
+  int32_t PeekLineCount() const;
   void GenerateRow(int64_t row_number, OrderRow* out);
   int64_t total_rows() const { return total_rows_; }
 

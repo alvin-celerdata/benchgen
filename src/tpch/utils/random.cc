@@ -222,6 +222,12 @@ int64_t RandomState::RandomInt(int64_t low, int64_t high, int stream) {
   return streams_[index].NextInt(low, high);
 }
 
+int64_t RandomState::PeekRandomInt(int64_t low, int64_t high, int stream) const {
+  int index = NormalizeStream(stream);
+  RandomStream stream_copy = streams_[index];
+  return stream_copy.NextInt(low, high);
+}
+
 double RandomState::RandomDouble(double low, double high, int stream) {
   int index = NormalizeStream(stream);
   return streams_[index].NextDouble(low, high);

@@ -61,6 +61,11 @@ void OrdersRowGenerator::SkipRows(int64_t rows) {
   SkipLine(&random_state_, rows, false);
 }
 
+int32_t OrdersRowGenerator::PeekLineCount() const {
+  return static_cast<int32_t>(
+      random_state_.PeekRandomInt(kOLcntMin, kOLcntMax, kOLcntSd));
+}
+
 void OrdersRowGenerator::GenerateRow(int64_t row_number, OrderRow* out) {
   if (!out) {
     return;

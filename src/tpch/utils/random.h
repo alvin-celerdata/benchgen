@@ -59,6 +59,7 @@ class RandomState {
   void RowStop(DbgenTable table);
 
   int64_t RandomInt(int64_t low, int64_t high, int stream);
+  int64_t PeekRandomInt(int64_t low, int64_t high, int stream) const;
   double RandomDouble(double low, double high, int stream);
   double RandomExponential(double mean, int stream);
 

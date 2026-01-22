@@ -30,9 +30,10 @@ class LineItemRowGenerator {
   arrow::Status Init();
   void SkipRows(int64_t rows);
   bool NextRow(LineItemRow* out);
-  int64_t total_orders() const { return total_orders_; }
+ int64_t total_orders() const { return total_orders_; }
 
  private:
+  double scale_factor_ = 1.0;
   OrdersRowGenerator order_generator_;
   OrderRow current_order_{};
   int64_t total_orders_ = 0;

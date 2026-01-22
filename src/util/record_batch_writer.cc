@@ -47,15 +47,17 @@ arrow::Status RecordBatchWriter::Write(std::ostream* out,
 arrow::Status RecordBatchWriter::WriteInternal(
     std::ostream* out, const arrow::RecordBatch& batch) const {
   const int num_columns = batch.num_columns();
+  std::string buffer;
+  buffer.reserve(static_cast<size_t>(batch.num_rows()) *
+                 static_cast<size_t>(num_columns) * 8);
   for (int64_t row = 0; row < batch.num_rows(); ++row) {
-    std::string line;
     for (int col = 0; col < num_columns; ++col) {
-      ARROW_RETURN_NOT_OK(AppendValue(&line, batch.column(col), row));
-      line.push_back('|');
+      ARROW_RETURN_NOT_OK(AppendValue(&buffer, batch.column(col), row));
+      buffer.push_back('|');
     }
-    line.push_back('\n');
-    *out << line;
+    buffer.push_back('\n');
   }
+  out->write(buffer.data(), static_cast<std::streamsize>(buffer.size()));
   return arrow::Status::OK();
 }
 
