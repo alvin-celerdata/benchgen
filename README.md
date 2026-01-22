@@ -145,9 +145,9 @@ if (!status.ok()) {
 - Deterministic output allows chunked workflows via disjoint
   `--start-row`/`--row-count` ranges. `--parallel` splits the resolved row range
   across worker threads when total row counts are known, writing `-0`, `-1`,
-  ... part files based on the `--output` prefix. For tables with unknown total
-  row counts (TPC-H `lineitem`, SSB `lineorder`), `benchgen` runs serially even
-  if `--parallel > 1`.
+  ... part files based on the `--output` prefix. TPC-H `lineitem` and SSB
+  `lineorder` infer totals from dbgen scale 1/5/10 anchors so `--parallel`
+  applies to them as well.
 - Column projection is supported in the C++ API via
   `GeneratorOptions::column_names`.
 

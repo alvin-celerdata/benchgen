@@ -14,6 +14,7 @@
 
 add_executable(tpch_gen_tests
     skip_rows_test.cc
+    row_count_test.cc
 )
 
 target_link_libraries(tpch_gen_tests PRIVATE GTest::gtest_main benchgen)

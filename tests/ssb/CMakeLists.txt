@@ -14,6 +14,7 @@
 
 add_executable(ssb_gen_tests
     row_generator_skip_rows_test.cc
+    row_count_test.cc
 )
 
 set_target_properties(ssb_gen_tests PROPERTIES OUTPUT_NAME "${BENCHGEN_OUTPUT_PREFIX}ssb_gen_tests")

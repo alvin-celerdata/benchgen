@@ -72,7 +72,7 @@ LineorderSnapshot Snapshot(const lineorder_t* row) {
 }  // namespace
 
 TEST(RowGeneratorSkipRows, Customer) {
-  CustomerRowGenerator gen(1.0, "", benchgen::DbgenSeedMode::kAllTables);
+  CustomerRowGenerator gen(1.0, benchgen::DbgenSeedMode::kAllTables);
   ASSERT_TRUE(gen.Init().ok());
 
   customer_t row1;
@@ -81,7 +81,7 @@ TEST(RowGeneratorSkipRows, Customer) {
     gen.GenerateRow(i, &row1);
   }
 
-  CustomerRowGenerator gen_skip(1.0, "",
+  CustomerRowGenerator gen_skip(1.0,
                                 benchgen::DbgenSeedMode::kAllTables);
   ASSERT_TRUE(gen_skip.Init().ok());
   gen_skip.SkipRows(target_row - 1);
@@ -99,7 +99,7 @@ TEST(RowGeneratorSkipRows, Customer) {
 }
 
 TEST(RowGeneratorSkipRows, Part) {
-  PartRowGenerator gen(1.0, "", benchgen::DbgenSeedMode::kAllTables);
+  PartRowGenerator gen(1.0, benchgen::DbgenSeedMode::kAllTables);
   ASSERT_TRUE(gen.Init().ok());
 
   part_t row1;
@@ -108,7 +108,7 @@ TEST(RowGeneratorSkipRows, Part) {
     gen.GenerateRow(i, &row1);
   }
 
-  PartRowGenerator gen_skip(1.0, "", benchgen::DbgenSeedMode::kAllTables);
+  PartRowGenerator gen_skip(1.0, benchgen::DbgenSeedMode::kAllTables);
   ASSERT_TRUE(gen_skip.Init().ok());
   gen_skip.SkipRows(target_row - 1);
   part_t row2;
@@ -126,7 +126,7 @@ TEST(RowGeneratorSkipRows, Part) {
 }
 
 TEST(RowGeneratorSkipRows, Supplier) {
-  SupplierRowGenerator gen(1.0, "", benchgen::DbgenSeedMode::kAllTables);
+  SupplierRowGenerator gen(1.0, benchgen::DbgenSeedMode::kAllTables);
   ASSERT_TRUE(gen.Init().ok());
 
   supplier_t row1;
@@ -135,7 +135,7 @@ TEST(RowGeneratorSkipRows, Supplier) {
     gen.GenerateRow(i, &row1);
   }
 
-  SupplierRowGenerator gen_skip(1.0, "",
+  SupplierRowGenerator gen_skip(1.0,
                                 benchgen::DbgenSeedMode::kAllTables);
   ASSERT_TRUE(gen_skip.Init().ok());
   gen_skip.SkipRows(target_row - 1);
@@ -152,13 +152,13 @@ TEST(RowGeneratorSkipRows, Supplier) {
 }
 
 TEST(RowGeneratorSkipRows, Date) {
-  DateRowGenerator gen(1.0, "", benchgen::DbgenSeedMode::kAllTables);
+  DateRowGenerator gen(1.0, benchgen::DbgenSeedMode::kAllTables);
   ASSERT_TRUE(gen.Init().ok());
 
   date_t row1;
   gen.GenerateRow(25, &row1);
 
-  DateRowGenerator gen_skip(1.0, "", benchgen::DbgenSeedMode::kAllTables);
+  DateRowGenerator gen_skip(1.0, benchgen::DbgenSeedMode::kAllTables);
   ASSERT_TRUE(gen_skip.Init().ok());
   gen_skip.SkipRows(24);
   date_t row2;
@@ -184,7 +184,7 @@ TEST(RowGeneratorSkipRows, Date) {
 }
 
 TEST(RowGeneratorSkipRows, Lineorder) {
-  LineorderRowGenerator gen(1.0, "", benchgen::DbgenSeedMode::kAllTables);
+  LineorderRowGenerator gen(1.0, benchgen::DbgenSeedMode::kAllTables);
   ASSERT_TRUE(gen.Init().ok());
 
   const lineorder_t* row = nullptr;
@@ -197,7 +197,7 @@ TEST(RowGeneratorSkipRows, Lineorder) {
     }
   }
 
-  LineorderRowGenerator gen_skip(1.0, "",
+  LineorderRowGenerator gen_skip(1.0,
                                  benchgen::DbgenSeedMode::kAllTables);
   ASSERT_TRUE(gen_skip.Init().ok());
   gen_skip.SkipRows(target_index);

@@ -25,6 +25,10 @@ constexpr int64_t kPartBase = 200000;
 constexpr int64_t kDateBase = 2556;
 constexpr int64_t kOrdersBase = 150000;
 constexpr int64_t kOrdersPerCustomer = 10;
+// dbgen lineorder row counts at scale 1/5/10 (used for interpolation).
+constexpr int64_t kLineorderScale1 = 6001215;
+constexpr int64_t kLineorderScale5 = 29999795;
+constexpr int64_t kLineorderScale10 = 59986052;
 
 int64_t ScaleLinear(int64_t base, double scale_factor) {
   if (scale_factor < 1.0) {
@@ -40,6 +44,33 @@ int64_t PartScaleMultiplier(long scale) {
   }
   double factor = 1.0 + (std::log(static_cast<double>(scale)) / std::log(2.0));
   return static_cast<int64_t>(std::floor(factor));
+}
+
+int64_t LineorderCount(double scale_factor) {
+  if (scale_factor < 1.0) {
+    return ScaleLinear(kLineorderScale1, scale_factor);
+  }
+  int64_t scale = static_cast<int64_t>(scale_factor);
+  if (scale <= 0) {
+    return 0;
+  }
+  int64_t tens = scale / 10;
+  int64_t remainder = scale % 10;
+  int64_t count = tens * kLineorderScale10;
+  if (remainder == 0) {
+    return count;
+  }
+  if (remainder < 5) {
+    int64_t delta = kLineorderScale5 - kLineorderScale1;
+    count += kLineorderScale1 + (delta * (remainder - 1)) / 4;
+    return count;
+  }
+  if (remainder == 5) {
+    return count + kLineorderScale5;
+  }
+  int64_t delta = kLineorderScale10 - kLineorderScale5;
+  count += kLineorderScale5 + (delta * (remainder - 5)) / 5;
+  return count;
 }
 
 }  // namespace
@@ -79,7 +110,7 @@ int64_t RowCount(TableId table, double scale_factor) {
       return scaled < 1.0 ? 1 : static_cast<int64_t>(scaled);
     }
     case TableId::kLineorder:
-      return -1;
+      return LineorderCount(scale_factor);
     case TableId::kTableCount:
       break;
   }

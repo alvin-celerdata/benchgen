@@ -64,8 +64,6 @@ class TpchSuite final : public BenchmarkSuite {
     }
 
     switch (table_id) {
-      case tpch::TableId::kLineItem:
-        return arrow::Status::OK();
       case tpch::TableId::kNation:
         *out = 25;
         *is_known = true;
@@ -78,7 +76,8 @@ class TpchSuite final : public BenchmarkSuite {
       case tpch::TableId::kPartSupp:
       case tpch::TableId::kSupplier:
       case tpch::TableId::kCustomer:
-      case tpch::TableId::kOrders: {
+      case tpch::TableId::kOrders:
+      case tpch::TableId::kLineItem: {
         int64_t rows =
             tpch::internal::RowCount(table_id, options.scale_factor);
         if (rows < 0) {

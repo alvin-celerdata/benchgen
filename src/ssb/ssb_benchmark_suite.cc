@@ -63,10 +63,6 @@ class SsbSuite final : public BenchmarkSuite {
                                     std::string(table_name));
     }
 
-    if (table_id == ssb::TableId::kLineorder) {
-      return arrow::Status::OK();
-    }
-
     int64_t rows = ssb::internal::RowCount(table_id, options.scale_factor);
     if (rows < 0) {
       return arrow::Status::OK();

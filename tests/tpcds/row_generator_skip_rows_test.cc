@@ -330,7 +330,6 @@ bool operator==(const ItemRowData& lhs, const ItemRowData& rhs) {
 namespace {
 
 constexpr double kScale = 1.0;
-const std::string kDistributionDir;
 
 template <typename Generator, typename Row>
 Row GenerateSequentialRow(Generator& generator, int64_t start_row) {
@@ -369,14 +368,13 @@ std::pair<Row, int64_t> GenerateSalesSequentialRow(Generator& generator,
 TEST(RowGeneratorSkipRowsTest, CatalogPage) {
   constexpr int64_t kStartRow = 10;
   benchgen::tpcds::internal::CatalogPageRowGenerator sequential(
-      kScale, kDistributionDir);
+      kScale);
   auto expected =
       GenerateSequentialRow<benchgen::tpcds::internal::CatalogPageRowGenerator,
                             benchgen::tpcds::internal::CatalogPageRowData>(
           sequential, kStartRow);
 
-  benchgen::tpcds::internal::CatalogPageRowGenerator skipped(kScale,
-                                                             kDistributionDir);
+  benchgen::tpcds::internal::CatalogPageRowGenerator skipped(kScale);
   auto actual =
       GenerateSkippedRow<benchgen::tpcds::internal::CatalogPageRowGenerator,
                          benchgen::tpcds::internal::CatalogPageRowData>(
@@ -388,13 +386,13 @@ TEST(RowGeneratorSkipRowsTest, CatalogPage) {
 TEST(RowGeneratorSkipRowsTest, CustomerAddress) {
   constexpr int64_t kStartRow = 10;
   benchgen::tpcds::internal::CustomerAddressRowGenerator sequential(
-      kScale, kDistributionDir);
+      kScale);
   auto expected = GenerateSequentialRow<
       benchgen::tpcds::internal::CustomerAddressRowGenerator,
       benchgen::tpcds::internal::CustomerAddressRowData>(sequential, kStartRow);
 
   benchgen::tpcds::internal::CustomerAddressRowGenerator skipped(
-      kScale, kDistributionDir);
+      kScale);
   auto actual =
       GenerateSkippedRow<benchgen::tpcds::internal::CustomerAddressRowGenerator,
                          benchgen::tpcds::internal::CustomerAddressRowData>(
@@ -405,15 +403,13 @@ TEST(RowGeneratorSkipRowsTest, CustomerAddress) {
 
 TEST(RowGeneratorSkipRowsTest, Customer) {
   constexpr int64_t kStartRow = 10;
-  benchgen::tpcds::internal::CustomerRowGenerator sequential(kScale,
-                                                             kDistributionDir);
+  benchgen::tpcds::internal::CustomerRowGenerator sequential(kScale);
   auto expected =
       GenerateSequentialRow<benchgen::tpcds::internal::CustomerRowGenerator,
                             benchgen::tpcds::internal::CustomerRowData>(
           sequential, kStartRow);
 
-  benchgen::tpcds::internal::CustomerRowGenerator skipped(kScale,
-                                                          kDistributionDir);
+  benchgen::tpcds::internal::CustomerRowGenerator skipped(kScale);
   auto actual =
       GenerateSkippedRow<benchgen::tpcds::internal::CustomerRowGenerator,
                          benchgen::tpcds::internal::CustomerRowData>(skipped,
@@ -424,15 +420,13 @@ TEST(RowGeneratorSkipRowsTest, Customer) {
 
 TEST(RowGeneratorSkipRowsTest, Warehouse) {
   constexpr int64_t kStartRow = 10;
-  benchgen::tpcds::internal::WarehouseRowGenerator sequential(kScale,
-                                                              kDistributionDir);
+  benchgen::tpcds::internal::WarehouseRowGenerator sequential(kScale);
   auto expected =
       GenerateSequentialRow<benchgen::tpcds::internal::WarehouseRowGenerator,
                             benchgen::tpcds::internal::WarehouseRowData>(
           sequential, kStartRow);
 
-  benchgen::tpcds::internal::WarehouseRowGenerator skipped(kScale,
-                                                           kDistributionDir);
+  benchgen::tpcds::internal::WarehouseRowGenerator skipped(kScale);
   auto actual =
       GenerateSkippedRow<benchgen::tpcds::internal::WarehouseRowGenerator,
                          benchgen::tpcds::internal::WarehouseRowData>(
@@ -443,15 +437,13 @@ TEST(RowGeneratorSkipRowsTest, Warehouse) {
 
 TEST(RowGeneratorSkipRowsTest, Inventory) {
   constexpr int64_t kStartRow = 10;
-  benchgen::tpcds::internal::InventoryRowGenerator sequential(kScale,
-                                                              kDistributionDir);
+  benchgen::tpcds::internal::InventoryRowGenerator sequential(kScale);
   auto expected =
       GenerateSequentialRow<benchgen::tpcds::internal::InventoryRowGenerator,
                             benchgen::tpcds::internal::InventoryRowData>(
           sequential, kStartRow);
 
-  benchgen::tpcds::internal::InventoryRowGenerator skipped(kScale,
-                                                           kDistributionDir);
+  benchgen::tpcds::internal::InventoryRowGenerator skipped(kScale);
   auto actual =
       GenerateSkippedRow<benchgen::tpcds::internal::InventoryRowGenerator,
                          benchgen::tpcds::internal::InventoryRowData>(
@@ -462,15 +454,13 @@ TEST(RowGeneratorSkipRowsTest, Inventory) {
 
 TEST(RowGeneratorSkipRowsTest, ShipMode) {
   constexpr int64_t kStartRow = 10;
-  benchgen::tpcds::internal::ShipModeRowGenerator sequential(kScale,
-                                                             kDistributionDir);
+  benchgen::tpcds::internal::ShipModeRowGenerator sequential(kScale);
   auto expected =
       GenerateSequentialRow<benchgen::tpcds::internal::ShipModeRowGenerator,
                             benchgen::tpcds::internal::ShipModeRowData>(
           sequential, kStartRow);
 
-  benchgen::tpcds::internal::ShipModeRowGenerator skipped(kScale,
-                                                          kDistributionDir);
+  benchgen::tpcds::internal::ShipModeRowGenerator skipped(kScale);
   auto actual =
       GenerateSkippedRow<benchgen::tpcds::internal::ShipModeRowGenerator,
                          benchgen::tpcds::internal::ShipModeRowData>(skipped,
@@ -481,15 +471,13 @@ TEST(RowGeneratorSkipRowsTest, ShipMode) {
 
 TEST(RowGeneratorSkipRowsTest, Promotion) {
   constexpr int64_t kStartRow = 10;
-  benchgen::tpcds::internal::PromotionRowGenerator sequential(kScale,
-                                                              kDistributionDir);
+  benchgen::tpcds::internal::PromotionRowGenerator sequential(kScale);
   auto expected =
       GenerateSequentialRow<benchgen::tpcds::internal::PromotionRowGenerator,
                             benchgen::tpcds::internal::PromotionRowData>(
           sequential, kStartRow);
 
-  benchgen::tpcds::internal::PromotionRowGenerator skipped(kScale,
-                                                           kDistributionDir);
+  benchgen::tpcds::internal::PromotionRowGenerator skipped(kScale);
   auto actual =
       GenerateSkippedRow<benchgen::tpcds::internal::PromotionRowGenerator,
                          benchgen::tpcds::internal::PromotionRowData>(
@@ -500,15 +488,13 @@ TEST(RowGeneratorSkipRowsTest, Promotion) {
 
 TEST(RowGeneratorSkipRowsTest, StoreRow) {
   constexpr int64_t kStartRow = 5;
-  benchgen::tpcds::internal::StoreRowGenerator sequential(kScale,
-                                                          kDistributionDir);
+  benchgen::tpcds::internal::StoreRowGenerator sequential(kScale);
   auto expected =
       GenerateSequentialRow<benchgen::tpcds::internal::StoreRowGenerator,
                             benchgen::tpcds::internal::StoreRowData>(sequential,
                                                                      kStartRow);
 
-  benchgen::tpcds::internal::StoreRowGenerator skipped(kScale,
-                                                       kDistributionDir);
+  benchgen::tpcds::internal::StoreRowGenerator skipped(kScale);
   auto actual = GenerateSkippedRow<benchgen::tpcds::internal::StoreRowGenerator,
                                    benchgen::tpcds::internal::StoreRowData>(
       skipped, kStartRow);
@@ -519,14 +505,13 @@ TEST(RowGeneratorSkipRowsTest, StoreRow) {
 TEST(RowGeneratorSkipRowsTest, CallCenter) {
   constexpr int64_t kStartRow = 5;
   benchgen::tpcds::internal::CallCenterRowGenerator sequential(
-      kScale, kDistributionDir);
+      kScale);
   auto expected =
       GenerateSequentialRow<benchgen::tpcds::internal::CallCenterRowGenerator,
                             benchgen::tpcds::internal::CallCenterRowData>(
           sequential, kStartRow);
 
-  benchgen::tpcds::internal::CallCenterRowGenerator skipped(kScale,
-                                                            kDistributionDir);
+  benchgen::tpcds::internal::CallCenterRowGenerator skipped(kScale);
   auto actual =
       GenerateSkippedRow<benchgen::tpcds::internal::CallCenterRowGenerator,
                          benchgen::tpcds::internal::CallCenterRowData>(
@@ -538,14 +523,13 @@ TEST(RowGeneratorSkipRowsTest, CallCenter) {
 TEST(RowGeneratorSkipRowsTest, CallCenterNoSkip) {
   constexpr int64_t kStartRow = 0;
   benchgen::tpcds::internal::CallCenterRowGenerator sequential(
-      kScale, kDistributionDir);
+      kScale);
   auto expected =
       GenerateSequentialRow<benchgen::tpcds::internal::CallCenterRowGenerator,
                             benchgen::tpcds::internal::CallCenterRowData>(
           sequential, kStartRow);
 
-  benchgen::tpcds::internal::CallCenterRowGenerator skipped(kScale,
-                                                            kDistributionDir);
+  benchgen::tpcds::internal::CallCenterRowGenerator skipped(kScale);
   auto actual =
       GenerateSkippedRow<benchgen::tpcds::internal::CallCenterRowGenerator,
                          benchgen::tpcds::internal::CallCenterRowData>(
@@ -556,15 +540,13 @@ TEST(RowGeneratorSkipRowsTest, CallCenterNoSkip) {
 
 TEST(RowGeneratorSkipRowsTest, WebSite) {
   constexpr int64_t kStartRow = 5;
-  benchgen::tpcds::internal::WebSiteRowGenerator sequential(kScale,
-                                                            kDistributionDir);
+  benchgen::tpcds::internal::WebSiteRowGenerator sequential(kScale);
   auto expected =
       GenerateSequentialRow<benchgen::tpcds::internal::WebSiteRowGenerator,
                             benchgen::tpcds::internal::WebSiteRowData>(
           sequential, kStartRow);
 
-  benchgen::tpcds::internal::WebSiteRowGenerator skipped(kScale,
-                                                         kDistributionDir);
+  benchgen::tpcds::internal::WebSiteRowGenerator skipped(kScale);
   auto actual =
       GenerateSkippedRow<benchgen::tpcds::internal::WebSiteRowGenerator,
                          benchgen::tpcds::internal::WebSiteRowData>(skipped,
@@ -575,15 +557,13 @@ TEST(RowGeneratorSkipRowsTest, WebSite) {
 
 TEST(RowGeneratorSkipRowsTest, WebPage) {
   constexpr int64_t kStartRow = 5;
-  benchgen::tpcds::internal::WebPageRowGenerator sequential(kScale,
-                                                            kDistributionDir);
+  benchgen::tpcds::internal::WebPageRowGenerator sequential(kScale);
   auto expected =
       GenerateSequentialRow<benchgen::tpcds::internal::WebPageRowGenerator,
                             benchgen::tpcds::internal::WebPageRowData>(
           sequential, kStartRow);
 
-  benchgen::tpcds::internal::WebPageRowGenerator skipped(kScale,
-                                                         kDistributionDir);
+  benchgen::tpcds::internal::WebPageRowGenerator skipped(kScale);
   auto actual =
       GenerateSkippedRow<benchgen::tpcds::internal::WebPageRowGenerator,
                          benchgen::tpcds::internal::WebPageRowData>(skipped,
@@ -594,14 +574,13 @@ TEST(RowGeneratorSkipRowsTest, WebPage) {
 
 TEST(RowGeneratorSkipRowsTest, Item) {
   constexpr int64_t kStartRow = 5;
-  benchgen::tpcds::internal::ItemRowGenerator sequential(kScale,
-                                                         kDistributionDir);
+  benchgen::tpcds::internal::ItemRowGenerator sequential(kScale);
   auto expected =
       GenerateSequentialRow<benchgen::tpcds::internal::ItemRowGenerator,
                             benchgen::tpcds::internal::ItemRowData>(sequential,
                                                                     kStartRow);
 
-  benchgen::tpcds::internal::ItemRowGenerator skipped(kScale, kDistributionDir);
+  benchgen::tpcds::internal::ItemRowGenerator skipped(kScale);
   auto actual = GenerateSkippedRow<benchgen::tpcds::internal::ItemRowGenerator,
                                    benchgen::tpcds::internal::ItemRowData>(
       skipped, kStartRow);
@@ -612,7 +591,7 @@ TEST(RowGeneratorSkipRowsTest, Item) {
 TEST(RowGeneratorSkipRowsTest, StoreSalesNoSkip) {
   constexpr int64_t kStartRow = 0;
   benchgen::tpcds::internal::StoreSalesRowGenerator sequential(
-      kScale, kDistributionDir);
+      kScale);
   auto [expected, order_number] = GenerateSalesSequentialRow<
       benchgen::tpcds::internal::StoreSalesRowGenerator,
       benchgen::tpcds::internal::StoreSalesRowData>(
@@ -621,8 +600,7 @@ TEST(RowGeneratorSkipRowsTest, StoreSalesNoSkip) {
         return generator.LastRowInTicket();
       });
 
-  benchgen::tpcds::internal::StoreSalesRowGenerator skipped(kScale,
-                                                            kDistributionDir);
+  benchgen::tpcds::internal::StoreSalesRowGenerator skipped(kScale);
   skipped.SkipRows(kStartRow);
   auto actual = skipped.GenerateRow(order_number);
 
@@ -632,7 +610,7 @@ TEST(RowGeneratorSkipRowsTest, StoreSalesNoSkip) {
 TEST(RowGeneratorSkipRowsTest, StoreSales) {
   constexpr int64_t kStartRow = 1;
   benchgen::tpcds::internal::StoreSalesRowGenerator sequential(
-      kScale, kDistributionDir);
+      kScale);
   auto [expected, order_number] = GenerateSalesSequentialRow<
       benchgen::tpcds::internal::StoreSalesRowGenerator,
       benchgen::tpcds::internal::StoreSalesRowData>(
@@ -641,8 +619,7 @@ TEST(RowGeneratorSkipRowsTest, StoreSales) {
         return generator.LastRowInTicket();
       });
 
-  benchgen::tpcds::internal::StoreSalesRowGenerator skipped(kScale,
-                                                            kDistributionDir);
+  benchgen::tpcds::internal::StoreSalesRowGenerator skipped(kScale);
   skipped.SkipRows(kStartRow);
   auto actual = skipped.GenerateRow(order_number);
 
@@ -652,7 +629,7 @@ TEST(RowGeneratorSkipRowsTest, StoreSales) {
 TEST(RowGeneratorSkipRowsTest, StoreSalesAcrossTickets) {
   constexpr int64_t kStartRow = 20;
   benchgen::tpcds::internal::StoreSalesRowGenerator sequential(
-      kScale, kDistributionDir);
+      kScale);
   auto [expected, order_number] = GenerateSalesSequentialRow<
       benchgen::tpcds::internal::StoreSalesRowGenerator,
       benchgen::tpcds::internal::StoreSalesRowData>(
@@ -661,8 +638,7 @@ TEST(RowGeneratorSkipRowsTest, StoreSalesAcrossTickets) {
         return generator.LastRowInTicket();
       });
 
-  benchgen::tpcds::internal::StoreSalesRowGenerator skipped(kScale,
-                                                            kDistributionDir);
+  benchgen::tpcds::internal::StoreSalesRowGenerator skipped(kScale);
   skipped.SkipRows(kStartRow);
   auto actual = skipped.GenerateRow(order_number);
 
@@ -671,8 +647,7 @@ TEST(RowGeneratorSkipRowsTest, StoreSalesAcrossTickets) {
 
 TEST(RowGeneratorSkipRowsTest, WebSales) {
   constexpr int64_t kStartRow = 1;
-  benchgen::tpcds::internal::WebSalesRowGenerator sequential(kScale,
-                                                             kDistributionDir);
+  benchgen::tpcds::internal::WebSalesRowGenerator sequential(kScale);
   auto [expected, order_number] = GenerateSalesSequentialRow<
       benchgen::tpcds::internal::WebSalesRowGenerator,
       benchgen::tpcds::internal::WebSalesRowData>(
@@ -681,8 +656,7 @@ TEST(RowGeneratorSkipRowsTest, WebSales) {
         return generator.LastRowInOrder();
       });
 
-  benchgen::tpcds::internal::WebSalesRowGenerator skipped(kScale,
-                                                          kDistributionDir);
+  benchgen::tpcds::internal::WebSalesRowGenerator skipped(kScale);
   skipped.SkipRows(kStartRow);
   auto actual = skipped.GenerateRow(order_number);
 
@@ -691,8 +665,7 @@ TEST(RowGeneratorSkipRowsTest, WebSales) {
 
 TEST(RowGeneratorSkipRowsTest, WebSalesAcrossOrders) {
   constexpr int64_t kStartRow = 20;
-  benchgen::tpcds::internal::WebSalesRowGenerator sequential(kScale,
-                                                             kDistributionDir);
+  benchgen::tpcds::internal::WebSalesRowGenerator sequential(kScale);
   auto [expected, order_number] = GenerateSalesSequentialRow<
       benchgen::tpcds::internal::WebSalesRowGenerator,
       benchgen::tpcds::internal::WebSalesRowData>(
@@ -701,8 +674,7 @@ TEST(RowGeneratorSkipRowsTest, WebSalesAcrossOrders) {
         return generator.LastRowInOrder();
       });
 
-  benchgen::tpcds::internal::WebSalesRowGenerator skipped(kScale,
-                                                          kDistributionDir);
+  benchgen::tpcds::internal::WebSalesRowGenerator skipped(kScale);
   skipped.SkipRows(kStartRow);
   auto actual = skipped.GenerateRow(order_number);
 
@@ -712,7 +684,7 @@ TEST(RowGeneratorSkipRowsTest, WebSalesAcrossOrders) {
 TEST(RowGeneratorSkipRowsTest, CatalogSales) {
   constexpr int64_t kStartRow = 1;
   benchgen::tpcds::internal::CatalogSalesRowGenerator sequential(
-      kScale, kDistributionDir);
+      kScale);
   auto [expected, order_number] = GenerateSalesSequentialRow<
       benchgen::tpcds::internal::CatalogSalesRowGenerator,
       benchgen::tpcds::internal::CatalogSalesRowData>(
@@ -721,8 +693,7 @@ TEST(RowGeneratorSkipRowsTest, CatalogSales) {
         return generator.LastRowInOrder();
       });
 
-  benchgen::tpcds::internal::CatalogSalesRowGenerator skipped(kScale,
-                                                              kDistributionDir);
+  benchgen::tpcds::internal::CatalogSalesRowGenerator skipped(kScale);
   skipped.SkipRows(kStartRow);
   auto actual = skipped.GenerateRow(order_number);
 
@@ -732,7 +703,7 @@ TEST(RowGeneratorSkipRowsTest, CatalogSales) {
 TEST(RowGeneratorSkipRowsTest, CatalogSalesAcrossOrders) {
   constexpr int64_t kStartRow = 20;
   benchgen::tpcds::internal::CatalogSalesRowGenerator sequential(
-      kScale, kDistributionDir);
+      kScale);
   auto [expected, order_number] = GenerateSalesSequentialRow<
       benchgen::tpcds::internal::CatalogSalesRowGenerator,
       benchgen::tpcds::internal::CatalogSalesRowData>(
@@ -741,8 +712,7 @@ TEST(RowGeneratorSkipRowsTest, CatalogSalesAcrossOrders) {
         return generator.LastRowInOrder();
       });
 
-  benchgen::tpcds::internal::CatalogSalesRowGenerator skipped(kScale,
-                                                              kDistributionDir);
+  benchgen::tpcds::internal::CatalogSalesRowGenerator skipped(kScale);
   skipped.SkipRows(kStartRow);
   auto actual = skipped.GenerateRow(order_number);
 
@@ -752,14 +722,13 @@ TEST(RowGeneratorSkipRowsTest, CatalogSalesAcrossOrders) {
 TEST(RowGeneratorSkipRowsTest, StoreReturns) {
   constexpr int64_t kStartRow = 5;
   benchgen::tpcds::internal::StoreReturnsRowGenerator sequential(
-      kScale, kDistributionDir);
+      kScale);
   auto expected =
       GenerateSequentialRow<benchgen::tpcds::internal::StoreReturnsRowGenerator,
                             benchgen::tpcds::internal::StoreReturnsRowData>(
           sequential, kStartRow);
 
-  benchgen::tpcds::internal::StoreReturnsRowGenerator skipped(kScale,
-                                                              kDistributionDir);
+  benchgen::tpcds::internal::StoreReturnsRowGenerator skipped(kScale);
   skipped.SkipRows(kStartRow);
   auto actual = skipped.GenerateRow(kStartRow + 1);
 
@@ -769,14 +738,13 @@ TEST(RowGeneratorSkipRowsTest, StoreReturns) {
 TEST(RowGeneratorSkipRowsTest, WebReturns) {
   constexpr int64_t kStartRow = 5;
   benchgen::tpcds::internal::WebReturnsRowGenerator sequential(
-      kScale, kDistributionDir);
+      kScale);
   auto expected =
       GenerateSequentialRow<benchgen::tpcds::internal::WebReturnsRowGenerator,
                             benchgen::tpcds::internal::WebReturnsRowData>(
           sequential, kStartRow);
 
-  benchgen::tpcds::internal::WebReturnsRowGenerator skipped(kScale,
-                                                            kDistributionDir);
+  benchgen::tpcds::internal::WebReturnsRowGenerator skipped(kScale);
   skipped.SkipRows(kStartRow);
   auto actual = skipped.GenerateRow(kStartRow + 1);
 
@@ -786,13 +754,13 @@ TEST(RowGeneratorSkipRowsTest, WebReturns) {
 TEST(RowGeneratorSkipRowsTest, CatalogReturns) {
   constexpr int64_t kStartRow = 5;
   benchgen::tpcds::internal::CatalogReturnsRowGenerator sequential(
-      kScale, kDistributionDir);
+      kScale);
   auto expected = GenerateSequentialRow<
       benchgen::tpcds::internal::CatalogReturnsRowGenerator,
       benchgen::tpcds::internal::CatalogReturnsRowData>(sequential, kStartRow);
 
   benchgen::tpcds::internal::CatalogReturnsRowGenerator skipped(
-      kScale, kDistributionDir);
+      kScale);
   skipped.SkipRows(kStartRow);
   auto actual = skipped.GenerateRow(kStartRow + 1);
 
