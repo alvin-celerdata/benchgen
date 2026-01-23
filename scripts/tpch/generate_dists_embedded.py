@@ -17,8 +17,6 @@
 Generate a C++ source file that embeds dists.dss into a raw string literal.
 """
 
-from __future__ import annotations
-
 import argparse
 from pathlib import Path
 import sys
@@ -75,7 +73,8 @@ def main() -> int:
     )
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    output_path.write_text(output, encoding="utf-8", newline="\n")
+    with output_path.open("w", encoding="utf-8", newline="\n") as out:
+        out.write(output)
     return 0
 
 
